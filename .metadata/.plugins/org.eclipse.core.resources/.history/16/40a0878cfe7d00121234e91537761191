@@ -1,16 +1,10 @@
 package net.babbster.rain;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
-
-import net.babbster.rain.graphics.Screen;
 
 /**
  * Game class
@@ -23,18 +17,8 @@ public class Game extends Canvas implements Runnable {
 	public static int scale = 3;
 	
 	private Thread thread;
-	private JFrame frame;	
 	private boolean running = false;
-	
-	private Screen screen;
-	
-	/* IMAGES */
-	//BufferedImage is a raster storage class
-	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-	
-	//CTRL + SHIFT + O will import a missing package
-	//this pulls the pixels out of the BufferedImage so that we can manipulate them
-	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+	private JFrame frame;
 
 	/**
 	 * Constructor
@@ -43,9 +27,7 @@ public class Game extends Canvas implements Runnable {
 		Dimension size = new Dimension(width * scale, height * scale);
 		
 		this.setPreferredSize(size);
-		screen = new Screen(this.width, this.height);		
 		frame = new JFrame();
-		
 	}
 
 	/**
@@ -96,17 +78,6 @@ public class Game extends Canvas implements Runnable {
 			this.createBufferStrategy(3);
 			return;
 		}
-		
-		//gets the non-rendered drawing buffer for modification
-		Graphics g = buffer.getDrawGraphics();
-		g.setColor(new Color(0, 32, 64));
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
-		//release resources
-		g.dispose();
-		//and show the back buffer
-		buffer.show();
-		
 	}
 	
 	/**

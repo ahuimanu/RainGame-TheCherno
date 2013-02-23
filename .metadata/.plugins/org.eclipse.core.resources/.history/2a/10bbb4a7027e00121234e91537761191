@@ -10,8 +10,6 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import net.babbster.rain.graphics.Screen;
-
 /**
  * Game class
  * @author tarball
@@ -43,9 +41,7 @@ public class Game extends Canvas implements Runnable {
 		Dimension size = new Dimension(width * scale, height * scale);
 		
 		this.setPreferredSize(size);
-		screen = new Screen(this.width, this.height);		
 		frame = new JFrame();
-		
 	}
 
 	/**
