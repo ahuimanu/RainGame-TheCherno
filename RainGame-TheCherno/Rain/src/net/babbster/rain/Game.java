@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 	public static int height = 300;
-	public static int width  = height * 16 * 9;
+	public static int width  = height / 16 * 9;
 	public static int scale  = 3;
 	
 	private Thread thread;
