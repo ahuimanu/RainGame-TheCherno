@@ -6,18 +6,18 @@ import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
-	public static int height = 300;
-	public static int width = height / 16 * 9;
+	public static int width = 300;
+	public static int height = width / 16 * 9;
 	public static int scale = 3;
-
+	
 	private Thread thread;
 	private boolean running = false;
 	private JFrame frame;
 
 	public Game() {
 		Dimension size = new Dimension(width * scale, height * scale);
+		
 		this.setPreferredSize(size);
-
 		frame = new JFrame();
 	}
 
@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		// Game loop
 		while (running) {
-			System.out.println("Runing");
+			System.out.printf("Height: %d - Width: %d\n", height, width);
 		}
 	}
 
@@ -51,6 +51,7 @@ public class Game extends Canvas implements Runnable {
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		game.frame.setLocationRelativeTo(null);
 		game.frame.setVisible(true);
 		game.start();
 	}
