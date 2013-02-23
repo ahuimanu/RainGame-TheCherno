@@ -2,8 +2,6 @@ package net.babbster.rain;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.awt.image.BufferStrategy;
-
 import javax.swing.JFrame;
 
 /**
@@ -71,13 +69,7 @@ public class Game extends Canvas implements Runnable {
 	 * render - all drawing work
 	 */
 	public void render(){
-		//create the back buffer
-		BufferStrategy buffer = this.getBufferStrategy();
-		if(buffer == null){
-			//the 3 represents triple buffering
-			this.createBufferStrategy(3);
-			return;
-		}
+		
 	}
 	
 	/**

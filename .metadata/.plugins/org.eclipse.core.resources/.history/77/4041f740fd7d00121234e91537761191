@@ -73,11 +73,6 @@ public class Game extends Canvas implements Runnable {
 	public void render(){
 		//create the back buffer
 		BufferStrategy buffer = this.getBufferStrategy();
-		if(buffer == null){
-			//the 3 represents triple buffering
-			this.createBufferStrategy(3);
-			return;
-		}
 	}
 	
 	/**
