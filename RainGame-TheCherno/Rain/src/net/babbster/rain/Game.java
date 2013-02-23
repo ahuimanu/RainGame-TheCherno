@@ -2,7 +2,6 @@ package net.babbster.rain;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
