@@ -44,10 +44,8 @@ public class Game extends Canvas implements Runnable {
 		Dimension size = new Dimension(width * scale, height * scale);
 		
 		this.setPreferredSize(size);
-		screen = new Screen(this.width, this.height);
+		screen = new Screen(this.width, this.height);		
 		frame = new JFrame();
-		
-		System.out.println(pixels.length);
 		
 	}
 
@@ -79,6 +77,7 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		// Game loop
 		while (running) {
+			//System.out.printf("Height: %d - Width: %d\n", height, width);
 			
 			//update: we do the tick or update method here - this is game logic
 			update();
@@ -110,6 +109,10 @@ public class Game extends Canvas implements Runnable {
 		
 		//gets the non-rendered drawing buffer for modification
 		Graphics g = buffer.getDrawGraphics();
+		//g.setColor(new Color(0, 32, 64));
+		//g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
+		
 		
 		g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
 		

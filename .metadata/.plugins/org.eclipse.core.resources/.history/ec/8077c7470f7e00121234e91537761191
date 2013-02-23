@@ -36,7 +36,7 @@ public class Screen {
 		if(counter % 50 == 0){
 			xtime++;
 		}
-		if(counter % 80 == 0){
+		if(counter % 75 == 0){
 			ytime++;
 		}
 		
