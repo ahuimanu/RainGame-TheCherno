@@ -1,0 +1,5 @@
+package net.babbster.rain.input;
+
+public class Keyboard {
+
+}

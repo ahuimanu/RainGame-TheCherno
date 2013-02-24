@@ -12,7 +12,6 @@ import java.util.Arrays;
 import javax.swing.JFrame;
 
 import net.babbster.rain.graphics.Screen;
-import net.babbster.rain.input.Keyboard;
 
 /**
  * Game class
@@ -25,15 +24,14 @@ public class Game extends Canvas implements Runnable {
 	public static int scale = 3;
 	public static String title = "Rain"; 
 	
-	int xoffval = 0;
-	int yoffval = 0;
+	int xval = 0;
+	int yval = 0;
 	
 	private Thread thread;
 	private JFrame frame;	
 	private boolean running = false;
 	
 	private Screen screen;
-	private Keyboard key;
 	
 	/* IMAGES */
 	//BufferedImage is a raster storage class
@@ -52,8 +50,8 @@ public class Game extends Canvas implements Runnable {
 		this.setPreferredSize(size);
 		screen = new Screen(this.width, this.height);
 		frame = new JFrame();
-		key = new Keyboard();
-		this.addKeyListener(key);
+		
+		System.out.println(pixels.length);
 		
 	}
 
@@ -133,8 +131,7 @@ public class Game extends Canvas implements Runnable {
 		
 		//clear and render the backbuffer
 		screen.clear();
-		//update the map movement with rendering
-		screen.render(xoffval, yoffval);
+		screen.render(xval, yval);
 
 		for(int i = 0; i < pixels.length; i++){
 			this.pixels[i] = screen.pixels[i];
@@ -157,23 +154,8 @@ public class Game extends Canvas implements Runnable {
 	 * update - game logic
 	 */
 	public void update(){
-		
-		//get key updates to increment or decrement x and y offsets
-		key.update();
-		
-		if(key.up){
-			yoffval--;	
-		}
-		if(key.down){
-			yoffval++;
-		}
-		if(key.left){
-			xoffval--;	
-		}
-		if(key.right){
-			xoffval++;
-		}
-		
+		xval++;
+		yval++;
 	}
 
 	/**

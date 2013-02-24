@@ -8,12 +8,11 @@ public class Screen {
 	private int width;
 	private int height;
 	
-	private final int TILE_SIZE = 16;
-	private final int TILE_MAP_SIZE = 16;
-	private final int TILE_SIZE_MASK = TILE_MAP_SIZE - 1;	
+	private final int TILE_SIZE = 32;
+	private final int TILE_PALETTE_SIZE = 64;
 	
 	public int[] pixels;
-	public int[] tiles = new int[TILE_MAP_SIZE * TILE_MAP_SIZE];
+	public int[] tiles = new int[TILE_PALETTE_SIZE * TILE_PALETTE_SIZE];
 	
 	private Random random = new Random();
 	
@@ -23,7 +22,7 @@ public class Screen {
 		pixels = new int[width * height];
 		
 		//randomize tiles
-		for(int i = 0; i < TILE_MAP_SIZE * TILE_MAP_SIZE; i++){
+		for(int i = 0; i < TILE_PALETTE_SIZE * TILE_PALETTE_SIZE; i++){
 			tiles[i] = random.nextInt(0xffffff);
 		}
 		
@@ -39,20 +38,20 @@ public class Screen {
 	/**
 	 * For modifying pixels
 	 */
-	public void render(int xOffset, int yOffset){
+	public void render(){
 
 		for(int y = 0; y < height; y++){
-			int yy = y + yOffset;
+			int yy = y;
 			if(y >= height || y < 0) break;
 
 			for(int x = 0; x < width; x++){
 				//Color c = new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
 				//pixels[time + time * width] = c.getRGB();
-				int xx = x + xOffset;
+				int xx = x + 60;
 				if(x >= width || x < 0) break;
 				
 				//we use a tile index to establish tile size and when to change tile color
-				int tileIndex = ((xx / TILE_SIZE) & TILE_SIZE_MASK) + ((yy / TILE_SIZE) & TILE_SIZE_MASK) * TILE_MAP_SIZE;
+				int tileIndex = ((xx / TILE_SIZE) & 63) + ((yy / TILE_SIZE) & 63) * TILE_PALETTE_SIZE;
 				pixels[x + y * width] = tiles[tileIndex];
 			}
 		}

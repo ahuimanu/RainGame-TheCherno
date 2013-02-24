@@ -26,7 +26,7 @@ public class Game extends Canvas implements Runnable {
 	public static String title = "Rain"; 
 	
 	int xoffval = 0;
-	int yoffval = 0;
+	int yval = 0;
 	
 	private Thread thread;
 	private JFrame frame;	
@@ -133,8 +133,7 @@ public class Game extends Canvas implements Runnable {
 		
 		//clear and render the backbuffer
 		screen.clear();
-		//update the map movement with rendering
-		screen.render(xoffval, yoffval);
+		screen.render(xoffval, yval);
 
 		for(int i = 0; i < pixels.length; i++){
 			this.pixels[i] = screen.pixels[i];
@@ -159,13 +158,12 @@ public class Game extends Canvas implements Runnable {
 	public void update(){
 		
 		//get key updates to increment or decrement x and y offsets
-		key.update();
 		
 		if(key.up){
-			yoffval--;	
+			yval--;	
 		}
 		if(key.down){
-			yoffval++;
+			yval++;
 		}
 		if(key.left){
 			xoffval--;	

@@ -159,7 +159,6 @@ public class Game extends Canvas implements Runnable {
 	public void update(){
 		
 		//get key updates to increment or decrement x and y offsets
-		key.update();
 		
 		if(key.up){
 			yoffval--;	
