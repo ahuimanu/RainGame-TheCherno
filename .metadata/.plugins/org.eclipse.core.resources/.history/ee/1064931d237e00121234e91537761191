@@ -29,6 +29,7 @@ public class SpriteSheet {
 		}catch(IOException exp){
 			exp.printStackTrace();
 		}
+		
 	}
-}
 
+}
