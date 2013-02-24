@@ -1,31 +1,22 @@
 package net.babbster.rain.graphics;
 
 import java.awt.Color;
-import java.util.Random;
 
 public class Screen {
 	
 	private int width;
 	private int height;
 	
-	private final int TILE_SIZE = 32;
-	private final int TILE_PALETTE_SIZE = 64;
-	
 	public int[] pixels;
-	public int[] tiles = new int[TILE_PALETTE_SIZE * TILE_PALETTE_SIZE];
 	
-	private Random random = new Random();
+	int xtime = 50;
+	int ytime = 0;
+	int counter = 0;
 	
 	public Screen(int width, int height){
 		this.width = width;
 		this.height = height;
 		pixels = new int[width * height];
-		
-		//randomize tiles
-		for(int i = 0; i < TILE_PALETTE_SIZE * TILE_PALETTE_SIZE; i++){
-			tiles[i] = random.nextInt(0xffffff);
-		}
-		
 	}
 	
 	public void clear(){
@@ -39,18 +30,34 @@ public class Screen {
 	 * For modifying pixels
 	 */
 	public void render(){
-
+		
+		counter++;
+		
+		if(counter % 50 == 0){
+			xtime++;
+		}
+		if(counter % 80 == 0){
+			ytime++;
+		}
+		
 		for(int y = 0; y < height; y++){
-			if(y >= height || y < 0) break;
-
+			if(ytime >= height){
+				break;
+			}
 			for(int x = 0; x < width; x++){
 				//Color c = new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
 				//pixels[time + time * width] = c.getRGB();
-				if(x >= width || x < 0) break;
 				
-				//we use a tile index to establish tile size and when to change tile color
-				int tileIndex = (x / TILE_SIZE) + (y / TILE_SIZE) * TILE_PALETTE_SIZE;
-				pixels[x + y * width] = tiles[tileIndex];
+				if(xtime >= width){
+					break;
+				}
+				
+				try{
+					pixels[xtime + ytime * width] = 0xff00ff;
+				} catch(Exception exp){
+					xtime = 40;
+					ytime = 40;
+				}
 			}
 		}
 	}

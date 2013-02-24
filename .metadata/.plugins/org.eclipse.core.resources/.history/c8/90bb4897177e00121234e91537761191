@@ -8,8 +8,8 @@ public class Screen {
 	private int width;
 	private int height;
 	
-	private final int TILE_SIZE = 32;
-	private final int TILE_PALETTE_SIZE = 64;
+	private final int TILE_SIZE;
+	private final int TILE_PALETTE_SIZE;
 	
 	public int[] pixels;
 	public int[] tiles = new int[TILE_PALETTE_SIZE * TILE_PALETTE_SIZE];
